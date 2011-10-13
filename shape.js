@@ -1,5 +1,5 @@
 (function() {
-  var Entity, Fill, Hexagon, Polygon, Shape, Style, Wire;
+  var Fill, Hexagon, Polygon, Shape, Style, Transform, Wire;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -14,8 +14,8 @@
   })();
   Polygon = (function() {
     __extends(Polygon, Shape);
-    function Polygon() {
-      Polygon.__super__.constructor.apply(this, arguments);
+    function Polygon(vertex) {
+      this.vertex = vertex != null ? vertex : [];
     }
     return Polygon;
   })();
@@ -40,18 +40,14 @@
     }
     return Hexagon;
   })();
-  Entity = (function() {
-    function Entity(shape, x, y, angle, scale) {
-      this.shape = shape;
+  Transform = (function() {
+    function Transform(x, y, angle, scale) {
       this.x = x != null ? x : 0;
       this.y = y != null ? y : 0;
       this.angle = angle != null ? angle : 0;
-      this.scale = scale != null ? scale : 1;
-      if (!(this.shape instanceof Polygon)) {
-        throw new Error('This shape is not a polygon.');
-      }
+      this.scale = scale != null ? scale : 1.0;
     }
-    return Entity;
+    return Transform;
   })();
   Style = (function() {
     function Style() {}
@@ -78,6 +74,5 @@
     module.exports.Shape = Shape;
     module.exports.Polygon = Polygon;
     module.exports.Hexagon = Hexagon;
-    module.exports.Entity = Entity;
   }
 }).call(this);

@@ -1,6 +1,7 @@
 class Shape
 
 class Polygon extends Shape
+  constructor: (@vertex = []) ->
 
 class Hexagon extends Polygon
   constructor: (@radius) ->
@@ -11,10 +12,8 @@ class Hexagon extends Polygon
       y: @radius * Math.sin(radian)
     } for radian in [0...goal] by step)
 
-class Entity
-  constructor: (@shape, @x = 0, @y = 0, @angle = 0, @scale = 1) ->
-    unless @shape instanceof Polygon
-      throw new Error 'This shape is not a polygon.'
+class Transform
+  constructor: (@x = 0, @y = 0, @angle = 0, @scale = 1.0) ->
 
 class Style
 
@@ -28,4 +27,3 @@ if module?.exports?
   module.exports.Shape = Shape
   module.exports.Polygon = Polygon
   module.exports.Hexagon = Hexagon
-  module.exports.Entity = Entity
