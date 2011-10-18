@@ -13,7 +13,8 @@ class Hexagon extends Polygon
     } for radian in [0...goal] by step)
 
 class Transform
-  constructor: (@x = 0, @y = 0, @angle = 0, @scale = 1.0) ->
+  constructor: (@x = 0, @y = 0, angle = 0, @scale = 1.0) ->
+    @angle = angle * Math.PI / 180
 
 class Style
 
